@@ -1,0 +1,23 @@
+module projNRSvlog(
+    output reg [1:0] state,
+	 input I,
+	 input clk,
+    output reg y
+    );
+	 
+	 always@(posedge clk)
+	 begin
+	 y<=state[0]&state[1]&~I;
+	 state[0] <= (~state[0]&state[1]&I) | (state[0]&~state[1]&~I);
+	 state[1] <= ~state[1]&~I;
+	 end
+	 
+
+endmodule
+
+
+net y loc = "G1";
+net state[0] loc = "N4";
+net state[1] loc = "P4";
+net clk loc = "E2";
+net I loc = "N3";
