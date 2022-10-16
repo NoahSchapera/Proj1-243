@@ -1,0 +1,5 @@
+net y loc = "G1";
+net state[0] loc = "N4";
+net state[1] loc = "P4";
+net clk loc = "A7";
+net I loc = "N3";
