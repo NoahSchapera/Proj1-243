@@ -1,5 +1,16 @@
+#"solved" light
 net y loc = "G1";
-net state[0] loc = "N4";
-net state[1] loc = "P4";
+
+#status lights of pattern 1
+net state1[0] loc = "P7";
+net state1[1] loc = "P6";
+
+#status lights of pattern 2
+net state2[0] loc = "M5";
+net state2[1] loc = "M11";
+
+#clock and inputs for pattern 1 and 2
 net clk loc = "A7";
-net I loc = "N3";
+net I1 loc = "N3";
+net I2 loc = "E2";
+
