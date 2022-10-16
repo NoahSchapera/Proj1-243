@@ -1,16 +1,51 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    20:33:43 10/16/2022 
+// Design Name: 
+// Module Name:    projNRSvlog 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+
 module projNRSvlog(
-	 input I,
+	 input I1,
+	 input I2,
 	 input clk,
-	 output reg [1:0] state,
+	 
+	 // defining state registers
+	 output reg [1:0] state1,
+	 output reg [1:0] state2,
+	 
+	 // defining solved variable (led)
     output reg y
     );
 	 
 	 
 	 always@(posedge clk)
 	 begin
-
-	 state[0] <= (~state[0]&state[1]&I) | (state[0]&~state[1]&~I);
-	 state[1] <= ~state[1]&~I;
-	 y<=state[0]&state[1]&~I;
+		
+		//modifies state of 1
+	 state1[0] <= (~state1[0]&state1[1]&I1) | (state1[0]&~state1[1]&~I1);
+	 state1[1] <= ~state1[1]&~I1;
+	 
+	 
+		//modifies state of 2
+	 state2[0] <= (~state2[0]&state2[1]&I2) | (state2[0]&~state2[1]&~I2);
+	 state2[1] <= (~state2[0]&~state2[1]&I2) | (state2[0]&~state2[1]&~I2);
+	 
+		// checks if both are in final state and correct final inputs
+	 y<=(state1[0]&state1[1]&~I1)&(state2[0]&state2[1]&I2);
 	 end
 endmodule
